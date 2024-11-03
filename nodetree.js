@@ -8,7 +8,7 @@ class Node {
   }
 }
 
-function prettyPrint(node, prefix = "", isLeft = true) {
+export function prettyPrint(node, prefix = "", isLeft = true) {
   if (node === null) {
     return;
   }
@@ -39,13 +39,14 @@ function createSubArr(array, start, end) {
   return subArray;
 }
 
-export default class Tree {
+export class Tree {
   constructor(array) {
     this.array = array;
     this.root = this.buildTree(this.array);
   }
 
   buildTree(array) {
+    console.log("----------- Buildtree starts ------------");
     let orderedArray = mergeSort(array);
     let cleanedArray = removeDuplicates(orderedArray);
     console.log(cleanedArray);
@@ -53,7 +54,11 @@ export default class Tree {
     let start = 0;
     let end = cleanedArray.length - 1;
     let mid = Math.floor((start + end) / 2);
-    console.log(`*** Start is: ${start} | Mid is: ${mid} | End is: ${end} ***`);
+
+    if (end < start) {
+      console.log(`Setting node to null`);
+      return null;
+    }
 
     let leftSubArr = createSubArr(cleanedArray, 0, mid - 1);
     let rightSubArr = createSubArr(cleanedArray, mid + 1, end);
@@ -61,9 +66,11 @@ export default class Tree {
     console.log(`Left sub array is: ${leftSubArr}`);
     console.log(`Right sub array is: ${rightSubArr}`);
 
-    // let a = new Node(cleanedArray[mid]);
-    // a.left = this.buildTree();
+    console.log(`Setting node to ${cleanedArray[mid]}`);
+    let node = new Node(cleanedArray[mid]);
+    node.left = this.buildTree(leftSubArr);
+    node.right = this.buildTree(rightSubArr);
 
-    // return a;
+    return node;
   }
 }
