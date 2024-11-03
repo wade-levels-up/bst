@@ -73,4 +73,25 @@ export class Tree {
 
     return node;
   }
+
+  insert(value) {
+    let node = this.root;
+    while (node) {
+      if (value < node.data) {
+        if (!node.left) {
+          node.left = new Node(value);
+          return;
+        }
+        node = node.left;
+      } else {
+        if (!node.right) {
+          node.right = new Node(value);
+          return;
+        }
+        node = node.right;
+      }
+    }
+  }
+
+  delete(value) {}
 }

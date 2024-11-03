@@ -8,3 +8,10 @@ let tree1 = new Tree(demoArray);
 
 // console.log(tree1.buildTree(demoArray));
 prettyPrint(tree1.root);
+console.log("--- Inserting 3 new values ---");
+
+tree1.insert(2);
+tree1.insert(32);
+tree1.insert(18);
+
+prettyPrint(tree1.root);
