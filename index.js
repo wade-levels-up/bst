@@ -15,3 +15,11 @@ tree1.insert(32);
 tree1.insert(18);
 
 prettyPrint(tree1.root);
+
+console.log("--- Deleting leaf nodes ---");
+
+tree1.deleteItem(2);
+tree1.deleteItem(18);
+tree1.deleteItem(32);
+
+prettyPrint(tree1.root);

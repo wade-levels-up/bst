@@ -93,5 +93,31 @@ export class Tree {
     }
   }
 
-  delete(value) {}
+  deleteItem(value) {
+    let node = this.root;
+    let prevNode = this.root;
+    while (node) {
+      if (value < node.data) {
+        if (node.left.data === value) {
+          // If node is a leaf node just delete the reference to it
+          if (node.left.left === null && node.left.right === null) {
+            node.left = null;
+            return;
+          }
+        }
+        node = node.left;
+        prevNode = node;
+      } else {
+        if (node.right.data === value) {
+          // If node is a leaf node just delete the reference to it
+          if (node.right.left === null && node.right.right === null) {
+            node.right = null;
+            return;
+          }
+        }
+        node = node.right;
+        prevNode = node;
+      }
+    }
+  }
 }
