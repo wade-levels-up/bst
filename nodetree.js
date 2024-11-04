@@ -104,9 +104,20 @@ export class Tree {
             node.left = null;
             return;
           }
+          if (node.left.left && !node.left.right) {
+            node.left = node.left.left;
+            return;
+          } else if (!node.left.left && node.left.right) {
+            node.left = node.left.right;
+            return;
+          } else if (node.left.left && node.left.right) {
+            node.left = node.left.left;
+            node.right = node.left.right;
+            return;
+          }
         }
-        node = node.left;
         prevNode = node;
+        node = node.left;
       } else {
         if (node.right.data === value) {
           // If node is a leaf node just delete the reference to it
@@ -114,9 +125,20 @@ export class Tree {
             node.right = null;
             return;
           }
+          if (node.right.left && !node.right.right) {
+            node.right = node.right.left;
+            return;
+          } else if (!node.right.left && node.right.right) {
+            node.right = node.right.right;
+            return;
+          } else if (node.right.left && node.right.right) {
+            node.left = node.right.left;
+            node.right = node.right.right;
+            return;
+          }
         }
-        node = node.right;
         prevNode = node;
+        node = node.right;
       }
     }
   }
