@@ -113,10 +113,35 @@ export class Tree {
             node.left = node.left.right;
             return;
           } else if (node.left.left && node.left.right) {
-            // If node to the LEFT has both a left node and a right node
-            node.left = node.left.left;
-            node.right = node.left.right;
-            console.log("Node to delete had both left and right nodes");
+            let switchNode = node.left;
+            let previous = node.left;
+            while (switchNode.left || switchNode.right) {
+              if (switchNode.left && switchNode.right) {
+                if (switchNode.right.data > switchNode.left.data) {
+                  previous = switchNode;
+                  switchNode = switchNode.left;
+                } else {
+                  previous = switchNode;
+                  switchNode = switchNode.right;
+                }
+              } else if (switchNode.left && !switchNode.right) {
+                previous = switchNode;
+                switchNode = switchNode.left;
+              } else {
+                previous = switchNode;
+                switchNode = switchNode.right;
+              }
+            }
+            node.left.data = switchNode.data;
+            // Find which side leaf node was on and remove it
+            if (previous.left && switchNode.data === previous.left.data) {
+              previous.left = null;
+            } else if (
+              previous.right &&
+              switchNode.data === previous.right.data
+            ) {
+              previous.right = null;
+            }
             return;
           }
         }
@@ -138,22 +163,35 @@ export class Tree {
             node.right = node.right.right;
             return;
           } else if (node.right.left && node.right.right) {
-            // If node to the RIGHT has both a left node and a right node
-            // node.left = node.right.left;
-            // node.right = node.right.right;
-            let switchNode = node;
-            while (switchNode) {
-              console.log(switchNode);
-              if (switchNode.right > switchNode.left) {
+            let switchNode = node.right;
+            let previous = node.right;
+            while (switchNode.left || switchNode.right) {
+              if (switchNode.left && switchNode.right) {
+                if (switchNode.right.data > switchNode.left.data) {
+                  previous = switchNode;
+                  switchNode = switchNode.left;
+                } else {
+                  previous = switchNode;
+                  switchNode = switchNode.right;
+                }
+              } else if (switchNode.left && !switchNode.right) {
+                previous = switchNode;
                 switchNode = switchNode.left;
               } else {
+                previous = switchNode;
                 switchNode = switchNode.right;
               }
             }
-            console.log(switchNode);
             node.right.data = switchNode.data;
-            switchNode = null;
-            console.log("Node to delete had both left and right nodes");
+            // Find which side leaf node was on and remove it
+            if (previous.left && switchNode.data === previous.left.data) {
+              previous.left = null;
+            } else if (
+              previous.right &&
+              switchNode.data === previous.right.data
+            ) {
+              previous.right = null;
+            }
             return;
           }
         }
