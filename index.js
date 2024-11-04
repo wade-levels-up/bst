@@ -18,3 +18,5 @@ console.log("-------------------");
 tree1.deleteItem(4);
 
 prettyPrint(tree1.root);
+
+console.log(tree1.find(18));

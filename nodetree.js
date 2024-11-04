@@ -200,4 +200,25 @@ export class Tree {
       }
     }
   }
+
+  find(value) {
+    let node = this.root;
+    if (node.data === value) {
+      return node;
+    }
+    while (node) {
+      if (value < node.data) {
+        node = node.left;
+        if (node.data === value) {
+          return node;
+        }
+      }
+      if (value > node.data) {
+        node = node.right;
+        if (node.data === value) {
+          return node;
+        }
+      }
+    }
+  }
 }
