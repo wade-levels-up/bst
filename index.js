@@ -15,6 +15,6 @@ prettyPrint(tree1.root);
 
 console.log("-------------------");
 
-tree1.deleteItem(67);
+tree1.deleteItem(23);
 
 prettyPrint(tree1.root);

@@ -105,14 +105,18 @@ export class Tree {
             return;
           }
           if (node.left.left && !node.left.right) {
+            // If node to the LEFT has a left node and doesn't have a right node
             node.left = node.left.left;
             return;
           } else if (!node.left.left && node.left.right) {
+            // If node to the LEFT has a right node and doesn't have a left node
             node.left = node.left.right;
             return;
           } else if (node.left.left && node.left.right) {
+            // If node to the LEFT has both a left node and a right node
             node.left = node.left.left;
             node.right = node.left.right;
+            console.log("Node to delete had both left and right nodes");
             return;
           }
         }
@@ -126,14 +130,30 @@ export class Tree {
             return;
           }
           if (node.right.left && !node.right.right) {
+            // If node to the RIGHT has a left node and doesn't have a right node
             node.right = node.right.left;
             return;
           } else if (!node.right.left && node.right.right) {
+            // If node to the RIGHT has a right node and doesn't have a left node
             node.right = node.right.right;
             return;
           } else if (node.right.left && node.right.right) {
-            node.left = node.right.left;
-            node.right = node.right.right;
+            // If node to the RIGHT has both a left node and a right node
+            // node.left = node.right.left;
+            // node.right = node.right.right;
+            let switchNode = node;
+            while (switchNode) {
+              console.log(switchNode);
+              if (switchNode.right > switchNode.left) {
+                switchNode = switchNode.left;
+              } else {
+                switchNode = switchNode.right;
+              }
+            }
+            console.log(switchNode);
+            node.right.data = switchNode.data;
+            switchNode = null;
+            console.log("Node to delete had both left and right nodes");
             return;
           }
         }
