@@ -46,27 +46,20 @@ export class Tree {
   }
 
   buildTree(array) {
-    console.log("----------- Buildtree starts ------------");
     let orderedArray = mergeSort(array);
     let cleanedArray = removeDuplicates(orderedArray);
-    console.log(cleanedArray);
 
     let start = 0;
     let end = cleanedArray.length - 1;
     let mid = Math.floor((start + end) / 2);
 
     if (end < start) {
-      console.log(`Setting node to null`);
       return null;
     }
 
     let leftSubArr = createSubArr(cleanedArray, 0, mid - 1);
     let rightSubArr = createSubArr(cleanedArray, mid + 1, end);
 
-    console.log(`Left sub array is: ${leftSubArr}`);
-    console.log(`Right sub array is: ${rightSubArr}`);
-
-    console.log(`Setting node to ${cleanedArray[mid]}`);
     let node = new Node(cleanedArray[mid]);
     node.left = this.buildTree(leftSubArr);
     node.right = this.buildTree(rightSubArr);
@@ -83,6 +76,8 @@ export class Tree {
           return;
         }
         node = node.left;
+      } else if (value === node.data) {
+        return;
       } else {
         if (!node.right) {
           node.right = new Node(value);
@@ -221,4 +216,6 @@ export class Tree {
       }
     }
   }
+
+  levelOrder(callback) {}
 }
