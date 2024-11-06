@@ -251,19 +251,16 @@ export class Tree {
     }
 
     let queue = [];
-    let result = [];
 
     if (this.root) {
       queue.push(this.root);
     }
 
     while (queue.length > 0) {
-      result.push(queue[0].data);
       if (queue[0].left) queue.push(queue[0].left);
       if (queue[0].right) queue.push(queue[0].right);
+      callback(queue[0]);
       queue.splice(0, 1);
     }
-
-    callback(result);
   }
 }
