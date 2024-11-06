@@ -263,4 +263,52 @@ export class Tree {
       queue.splice(0, 1);
     }
   }
+
+  inOrder(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback must be a function");
+    }
+
+    function inOrderHelper(node, callback) {
+      if (node !== null) {
+        inOrderHelper(node.left, callback);
+        callback(node.data);
+        inOrderHelper(node.right, callback);
+      }
+    }
+
+    inOrderHelper(this.root, callback);
+  }
+
+  preOrder(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback must be a function");
+    }
+
+    function preOrderHelper(node, callback) {
+      if (node !== null) {
+        callback(node.data);
+        preOrderHelper(node.left, callback);
+        preOrderHelper(node.right, callback);
+      }
+    }
+
+    preOrderHelper(this.root, callback);
+  }
+
+  postOrder(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback must be a function");
+    }
+
+    function postOrderHelper(node, callback) {
+      if (node !== null) {
+        postOrderHelper(node.left, callback);
+        postOrderHelper(node.right, callback);
+        callback(node.data);
+      }
+    }
+
+    postOrderHelper(this.root, callback);
+  }
 }
