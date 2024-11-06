@@ -245,5 +245,25 @@ export class Tree {
     }
   }
 
-  levelOrder(callback) {}
+  levelOrder(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("Callback must be a function");
+    }
+
+    let queue = [];
+    let result = [];
+
+    if (this.root) {
+      queue.push(this.root);
+    }
+
+    while (queue.length > 0) {
+      result.push(queue[0].data);
+      if (queue[0].left) queue.push(queue[0].left);
+      if (queue[0].right) queue.push(queue[0].right);
+      queue.splice(0, 1);
+    }
+
+    callback(result);
+  }
 }

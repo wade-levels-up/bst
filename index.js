@@ -15,4 +15,6 @@ tree1.deleteItem(tree1.root, 8);
 
 prettyPrint(tree1.root);
 
-// console.log(tree1.find(18));
+console.log(tree1.find(23));
+
+tree1.levelOrder(console.log);
