@@ -337,4 +337,11 @@ export class Tree {
     }
     return count;
   }
+
+  isBalanced() {
+    let leftHeight = this.height(this.root.left);
+    let rightHeight = this.height(this.root.right);
+    if (leftHeight === rightHeight) return true;
+    if (leftHeight % rightHeight > 1) return false;
+  }
 }

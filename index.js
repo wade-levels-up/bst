@@ -13,10 +13,14 @@ console.log("-------------------");
 
 tree1.deleteItem(tree1.root, 8);
 
-prettyPrint(tree1.root);
-
 // console.log(tree1.find(23));
 
 // tree1.levelOrder(console.log);
 
+tree1.insert(12);
+tree1.insert(11);
+
+prettyPrint(tree1.root);
+
 console.log(tree1.depth(tree1.find(13)));
+console.log(tree1.isBalanced());
