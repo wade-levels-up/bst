@@ -22,5 +22,9 @@ tree1.insert(11);
 
 prettyPrint(tree1.root);
 
-console.log(tree1.depth(tree1.find(13)));
+console.log("------ Rebalance tree ------");
+console.log(tree1.isBalanced());
+tree1.rebalance();
+
+prettyPrint(tree1.root);
 console.log(tree1.isBalanced());
