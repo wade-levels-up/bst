@@ -19,4 +19,4 @@ prettyPrint(tree1.root);
 
 // tree1.levelOrder(console.log);
 
-tree1.preOrder(console.log);
+console.log(tree1.depth(tree1.find(13)));

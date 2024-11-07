@@ -272,7 +272,7 @@ export class Tree {
     function inOrderHelper(node, callback) {
       if (node !== null) {
         inOrderHelper(node.left, callback);
-        callback(node.data);
+        callback(node);
         inOrderHelper(node.right, callback);
       }
     }
@@ -287,7 +287,7 @@ export class Tree {
 
     function preOrderHelper(node, callback) {
       if (node !== null) {
-        callback(node.data);
+        callback(node);
         preOrderHelper(node.left, callback);
         preOrderHelper(node.right, callback);
       }
@@ -305,10 +305,36 @@ export class Tree {
       if (node !== null) {
         postOrderHelper(node.left, callback);
         postOrderHelper(node.right, callback);
-        callback(node.data);
+        callback(node);
       }
     }
 
     postOrderHelper(this.root, callback);
+  }
+
+  height(node) {
+    if (node === null) {
+      return -1;
+    }
+    const leftHeight = this.height(node.left);
+    const rightHeight = this.height(node.right);
+    return 1 + Math.max(leftHeight, rightHeight);
+  }
+
+  depth(node) {
+    let count = 0;
+    let root = this.root;
+    while (root) {
+      if (node.data === root.data) {
+        return count;
+      } else if (node.data < root.data) {
+        root = root.left;
+        count += 1;
+      } else if (node.data > root.data) {
+        root = root.right;
+        count += 1;
+      }
+    }
+    return count;
   }
 }
