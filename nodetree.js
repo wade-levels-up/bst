@@ -237,7 +237,6 @@ export class Tree {
       return Math.abs(a - b);
     }
     let diff = difference(leftHeight, rightHeight);
-    console.log(diff);
     if (diff <= 1) {
       return true;
     } else {
